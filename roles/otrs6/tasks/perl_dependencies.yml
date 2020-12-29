@@ -1,0 +1,31 @@
+---
+- name: 'Install perl dependencies'
+  apt: name={{ item }} state=latest
+  with_items:
+      - libapache2-mod-perl2
+      - libdbd-mysql-perl 
+      - libtimedate-perl 
+      - libnet-dns-perl 
+      - libnet-ldap-perl 
+      - libio-socket-ssl-perl 
+      - libpdf-api2-perl 
+      - libsoap-lite-perl 
+      - libtext-csv-xs-perl 
+      - libjson-xs-perl 
+      - libapache-dbi-perl 
+      - libxml-libxml-perl 
+      - libxml-libxslt-perl 
+      - libyaml-perl 
+      - libarchive-zip-perl 
+      - libcrypt-eksblowfish-perl 
+      - libencode-hanextra-perl 
+      - libmail-imapclient-perl 
+      - libtemplate-perl 
+      - libdatetime-perl
+      - libdbd-pg-perl
+      - python3-psycopg2
+      - libpq-dev
+      - libssl-dev
+      - libssl-doc
+      
+  become: true

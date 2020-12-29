@@ -1,0 +1,34 @@
+---
+  - name: Installing the Database Mysql
+    tags: mysql
+    apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+    with_items:
+      - python3-dev
+      - python3-pip
+      - mariadb-server
+      - mariadb-client
+      - python3-mysqldb
+      - python-mysqldb
+
+  - name: "Creating MariaDB user"
+    tags: mysql
+    mysql_user:
+      name: otrs
+      password: otrs 
+      priv: '*.*:ALL,GRANT'
+      state: present
+
+  - name: "Copy Config for MariaDB"
+    tags: mysql
+    copy:
+      src: 50-server.cnf
+      dest: /etc/mysql/mariadb.conf.d/50-server.cnf
+
+
+  - name: Restarting the Database
+    tags: mysql
+    service: name=mariadb state=restarted
+   
